@@ -30,6 +30,7 @@ jobs:
         with:
           repository: 'levid0s/levidos-blog-site'
           ref: master
+          token: ${{ secrets.GH_PAT_LEVIDOS }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
