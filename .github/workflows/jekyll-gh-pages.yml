@@ -1,4 +1,4 @@
-name: Build & Release Jekyll
+name: Build & Release Jekyll Lev
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 jobs:
-  jekyll:
+  jekyll-lev:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -32,15 +32,19 @@ jobs:
     - uses:  helaili/jekyll-action@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        target_branch: gh-pages
+        build_only: true
+        build_dir: ./mysite
+        # target_branch: gh-pages
 
     - name: Setup Pages
       uses: actions/configure-pages@v3
+      
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
         # Upload entire repository
-        path: '.'
+        path: './mysite'
+        
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v1
