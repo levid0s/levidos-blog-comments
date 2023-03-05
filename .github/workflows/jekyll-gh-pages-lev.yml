@@ -4,6 +4,9 @@ on:
   push:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  # Trigger workflow via API from another repo
+  repository_dispatch:
+    types: [trigger-workflow]
 
 permissions:
   contents: write
