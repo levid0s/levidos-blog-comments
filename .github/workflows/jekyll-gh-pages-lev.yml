@@ -32,6 +32,10 @@ jobs:
     - name: Setup Pages
       uses: actions/configure-pages@v3
       id: configure-pages
+ 
+    - name: Calculate BaseURL Parameter
+      run: |
+          [ -n "${{ steps.configure-pages.outputs.base_path }}" ] && echo "baseurl_param=\"--baseurl ${{ steps.configure-pages.outputs.base_path }}\"" >> $GITHUB_ENV
 
     # Standard usage
     - uses:  helaili/jekyll-action@v2
@@ -39,7 +43,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         build_only: true
         build_dir: ./mysite
-        jekyll_build_options: --baseurl "${{ steps.configure-pages.outputs.base_path }}"
+        jekyll_build_options: "${{ env.baseurl_param }}"
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
