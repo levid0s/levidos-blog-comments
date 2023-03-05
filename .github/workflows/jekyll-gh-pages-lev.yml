@@ -35,7 +35,7 @@ jobs:
  
     - name: Calculate BaseURL Parameter
       run: |
-          [ -n "${{ steps.configure-pages.outputs.base_path }}" ] && echo "baseurl_param=\"--baseurl ${{ steps.configure-pages.outputs.base_path }}\"" >> $GITHUB_ENV
+          [ -n "${{ steps.configure-pages.outputs.base_path }}" ] && echo "baseurl_param=\"--baseurl ${{ steps.configure-pages.outputs.base_path }}\"" >> $GITHUB_ENV || :
 
     # Standard usage
     - uses:  helaili/jekyll-action@v2
